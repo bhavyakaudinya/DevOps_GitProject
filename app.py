@@ -19,6 +19,7 @@ def index():
 @app.route('/products')
 def product():
     product = list(collections.find())
+    print(product)
     return render_template("products.html", product_obj=product)
 
 if __name__ == '__main__':
