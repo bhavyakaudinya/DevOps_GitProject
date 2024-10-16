@@ -8,7 +8,6 @@ username = "c0919320"
 password = "host"
 encoded_password = quote_plus(password)
 
-# MongoDB connection string with proper username and password substitution
 mongo_client = MongoClient(f"mongodb+srv://{username}:{encoded_password}@devopsdatabase.26zbs.mongodb.net/?retryWrites=true&w=majority&appName=DevOpsDatabase")
 db = mongo_client["store"]
 collections = db["product"]
