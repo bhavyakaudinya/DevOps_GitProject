@@ -8,7 +8,7 @@ username = "c0919320"
 password = "host"
 password = quote_plus(password)
 
-mongo_client = MongoClient(f"mongodb+srv://{username}:{password}@devopsdatabase.26zbs.mongodb.net/?retryWrites=true&w=majority&appName=DevOpsDatabase")
+mongo_client = MongoClient("mongodb+srv://c0919320:<db_password>@devopsdatabase.26zbs.mongodb.net/?retryWrites=true&w=majority&appName=DevOpsDatabase")
 db= mongo_client["store"]
 collections=db["product"]
 
