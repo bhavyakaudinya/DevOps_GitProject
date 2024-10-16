@@ -1,4 +1,3 @@
-<!-- templates/products.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,9 +20,12 @@
             {% for product in product_obj %}
             <tr>
                 <td>{{ product.name }}</td>
-                <td>${{ product.Price }}</td>
+                <td>${{ product.price }}</td> <!-- Ensure the field name is 'price' not 'Price' -->
                 <td>{{ product.size }}</td>
-                <td><img src="{{ product.image_path }}" alt="{{ product.name }}" width="120px"></td>
+                <td>
+                    <img src="{{ product.image_path if product.image_path else '/static/default-image.jpg' }}" 
+                         alt="{{ product.name }}" width="120px">
+                </td>
             </tr>
             {% endfor %}
         </tbody>
