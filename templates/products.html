@@ -1,0 +1,32 @@
+<!-- templates/products.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products List</title>
+</head>
+<body>
+    <h1>Products List</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Size</th>
+                <th>Image</th>
+            </tr>
+        </thead>
+        <tbody id="product-list">
+            {% for product in product_obj %}
+            <tr>
+                <td>{{ product.name }}</td>
+                <td>${{ product.Price }}</td>
+                <td>{{ product.size }}</td>
+                <td><img src="{{ product.image_path }}" alt="{{ product.name }}" width="120px"></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
