@@ -26,7 +26,7 @@ def index():
 @app.route("/products")
 def product():
     temp = list(products_collection.find())
-    print(temp)  # For debugging purposes, print the fetched data
+    print(temp) 
     return render_template("products.html", product_obj=temp)
 
 if __name__ == "__main__":
