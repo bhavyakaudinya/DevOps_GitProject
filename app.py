@@ -1,25 +1,38 @@
-from flask import Flask, render_template
+from app import flask_app, products_collection
+from flask import render_template
+
+from app import flask_app
+
+from flask import Flask
 from pymongo import MongoClient
-from urllib.parse import quote_plus
+from dotenv import load_dotenv
+import os
 
 app = Flask(__name__)
 
-# username = "c0919320"
-# password = "host"
-# encoded_password = quote_plus(password)
+load_dotenv()
 
-mongo_client = MongoClient(f"mongodb+srv://c0919320:<c0919320_BK>@devopsbase.26zbs.mongodb.net/?retryWrites=true&w=majority&appName=DevOpsBase")
-db = mongo_client["store"]
-collections = db["product"]
+db_username = "c0919320"
+db_password = "c0919320_BK"
+cluster_name = "devopsbase.26zbs.mongodb.net"
+database_name = "store"
+collection_name = "products"
 
-@app.route('/')
+mongo_client = MongoClient(f"mongodb+srv://{db_username}:{db_password}@{cluster_name}/?retryWrites=true&w=majority&appName=DevOpsBase")
+
+db = mongo_client[database_name]
+
+products_collection = db[collection_name]
+
+from app import routes
+
+@flask_app.route("/")
 def index():
     return render_template("index.html")
 
-@app.route('/products')
-def product():
-    product = list(collections.find())
-    return render_template("products.html", product_obj=product)
+@flask_app.route("/products")
+def products():
+    products = list(products_collection.find())
+    return render_template("products.html", products=products)
 
-if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=5000)
+flask_app.run(host="0.0.0.0", port=5000)
