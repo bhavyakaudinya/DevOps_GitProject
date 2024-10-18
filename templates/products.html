@@ -15,12 +15,12 @@
             <th>Price</th>
             <th>Image</th>
         </tr>
-        {% for product in products %}
+        {% for temp in product_obj %}
         <tr>
-            <td>{{ product.name }}</td>
-            <td>{{ product.tag }}</td>
-            <td>{{ product.price }}</td>
-            <td><img src="{{ url_for('static', filename='images/' + product.image_path) }}" alt="{{ product.name }}" /></td>
+            <td>{{ temp.name }}</td>
+            <td>{{ temp.tag }}</td>
+            <td>{{ temp.price }}</td>
+            <td><img src="{{ url_for('static', filename='images/' + temp.image_path) }}" alt="{{ temp.name }}" /></td>
         </tr>
         {% endfor %}
     </table>
