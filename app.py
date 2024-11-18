@@ -23,11 +23,19 @@ products_collection = db[collection_name]
 def index():
     return render_template("index.html")
 
+@app.route('/home', methods=['GET'])
+def home():
+    return "Welcome to Home Page!", 200
+
 @app.route("/products")
 def product():
     temp = list(products_collection.find())
     print(temp) 
     return render_template("products.html", product_obj=temp)
+
+def close_connection(exception=None):
+    """Close the MongoDB connection."""
+    mongo_client.close()
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
